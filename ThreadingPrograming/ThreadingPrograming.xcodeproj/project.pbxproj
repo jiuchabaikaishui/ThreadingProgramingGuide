@@ -20,22 +20,31 @@
 		6E1FD65920FCC514002D9D2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E1FD65820FCC514002D9D2F /* Assets.xcassets */; };
 		6E1FD65C20FCC514002D9D2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E1FD65A20FCC514002D9D2F /* LaunchScreen.storyboard */; };
 		6E1FD65F20FCC514002D9D2F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD65E20FCC514002D9D2F /* main.m */; };
-		6E1FD69B20FF2C57002D9D2F /* CommonTableViewSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD69020FF2C57002D9D2F /* CommonTableViewSectionModel.m */; };
-		6E1FD69C20FF2C57002D9D2F /* CommonTableViewSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD69020FF2C57002D9D2F /* CommonTableViewSectionModel.m */; };
-		6E1FD69D20FF2C57002D9D2F /* CommonRowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD69220FF2C57002D9D2F /* CommonRowModel.m */; };
-		6E1FD69E20FF2C57002D9D2F /* CommonRowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD69220FF2C57002D9D2F /* CommonRowModel.m */; };
-		6E1FD69F20FF2C57002D9D2F /* CommonSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD69520FF2C57002D9D2F /* CommonSectionModel.m */; };
-		6E1FD6A020FF2C57002D9D2F /* CommonSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD69520FF2C57002D9D2F /* CommonSectionModel.m */; };
-		6E1FD6A120FF2C57002D9D2F /* CommonTableViewRowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD69720FF2C57002D9D2F /* CommonTableViewRowModel.m */; };
-		6E1FD6A220FF2C57002D9D2F /* CommonTableViewRowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD69720FF2C57002D9D2F /* CommonTableViewRowModel.m */; };
-		6E1FD6A320FF2C57002D9D2F /* CommonTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD69920FF2C57002D9D2F /* CommonTableViewModel.m */; };
-		6E1FD6A420FF2C57002D9D2F /* CommonTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD69920FF2C57002D9D2F /* CommonTableViewModel.m */; };
-		6E1FD6A720FF2F06002D9D2F /* CommonTableVieweHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD6A620FF2F06002D9D2F /* CommonTableVieweHeaderView.m */; };
-		6E1FD6A820FF2F06002D9D2F /* CommonTableVieweHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD6A620FF2F06002D9D2F /* CommonTableVieweHeaderView.m */; };
-		6E1FD6B320FF4208002D9D2F /* CommonTableViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD6B220FF4208002D9D2F /* CommonTableViewHelper.m */; };
-		6E1FD6B420FF4208002D9D2F /* CommonTableViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD6B220FF4208002D9D2F /* CommonTableViewHelper.m */; };
-		6E1FD6BC20FF43B8002D9D2F /* UITableView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD6BB20FF43B8002D9D2F /* UITableView+Category.m */; };
-		6E1FD6BD20FF43B8002D9D2F /* UITableView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD6BB20FF43B8002D9D2F /* UITableView+Category.m */; };
+		6E1FD6A720FF2F06002D9D2F /* CommonTableViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD6A620FF2F06002D9D2F /* CommonTableViewHeaderView.m */; };
+		6E1FD6A820FF2F06002D9D2F /* CommonTableViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD6A620FF2F06002D9D2F /* CommonTableViewHeaderView.m */; };
+		6E1FD6C0210036CE002D9D2F /* CommonM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD6BF210036CE002D9D2F /* CommonM.m */; };
+		6E1FD6C1210036CE002D9D2F /* CommonM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD6BF210036CE002D9D2F /* CommonM.m */; };
+		6E1FD6FA21003ECF002D9D2F /* QSPViewVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD6F321003ECE002D9D2F /* QSPViewVM.m */; };
+		6E1FD6FB21003ECF002D9D2F /* QSPViewVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD6F321003ECE002D9D2F /* QSPViewVM.m */; };
+		6E1FD6FE21003ECF002D9D2F /* QSPTableViewSectionVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD6F721003ECE002D9D2F /* QSPTableViewSectionVM.m */; };
+		6E1FD6FF21003ECF002D9D2F /* QSPTableViewSectionVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD6F721003ECE002D9D2F /* QSPTableViewSectionVM.m */; };
+		6E1FD70221003F35002D9D2F /* QSPTableViewVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD70121003F35002D9D2F /* QSPTableViewVM.m */; };
+		6E1FD70321003F35002D9D2F /* QSPTableViewVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD70121003F35002D9D2F /* QSPTableViewVM.m */; };
+		6E1FD70621005DD5002D9D2F /* QSPTableViewCellVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD70521005DD5002D9D2F /* QSPTableViewCellVM.m */; };
+		6E1FD70721005DD5002D9D2F /* QSPTableViewCellVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD70521005DD5002D9D2F /* QSPTableViewCellVM.m */; };
+		6E1FD70A21007A21002D9D2F /* QSPTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD70921007A21002D9D2F /* QSPTableViewCell.m */; };
+		6E1FD70B21007A21002D9D2F /* QSPTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD70921007A21002D9D2F /* QSPTableViewCell.m */; };
+		6E1FD71221009EE9002D9D2F /* QSPTableViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD71121009EE9002D9D2F /* QSPTableViewHeaderView.m */; };
+		6E1FD71321009EE9002D9D2F /* QSPTableViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD71121009EE9002D9D2F /* QSPTableViewHeaderView.m */; };
+		6E1FD7242101DFC3002D9D2F /* UITableView+QSPMVVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD7232101DFC3002D9D2F /* UITableView+QSPMVVM.m */; };
+		6E1FD7252101DFC3002D9D2F /* UITableView+QSPMVVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD7232101DFC3002D9D2F /* UITableView+QSPMVVM.m */; };
+		6E1FD72821056752002D9D2F /* QSPTableViewFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD72721056752002D9D2F /* QSPTableViewFooterView.m */; };
+		6E1FD72921056752002D9D2F /* QSPTableViewFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD72721056752002D9D2F /* QSPTableViewFooterView.m */; };
+		6E1FD72C2105B7BE002D9D2F /* QSPTableViewSectionM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD72B2105B7BE002D9D2F /* QSPTableViewSectionM.m */; };
+		6E1FD72D2105B7BE002D9D2F /* QSPTableViewSectionM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD72B2105B7BE002D9D2F /* QSPTableViewSectionM.m */; };
+		6EDF64A02105D4B600D67A53 /* CommonTableViewCellVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF649F2105D4B600D67A53 /* CommonTableViewCellVM.m */; };
+		6EDF64A32105E68A00D67A53 /* CommonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF64A22105E68A00D67A53 /* CommonTableViewCell.m */; };
+		6EF483492105FCE600EA0CEB /* CommonTableViewSectionVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF483482105FCE600EA0CEB /* CommonTableViewSectionVM.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,23 +70,35 @@
 		6E1FD65B20FCC514002D9D2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6E1FD65D20FCC514002D9D2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6E1FD65E20FCC514002D9D2F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		6E1FD68F20FF2C57002D9D2F /* CommonSectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonSectionModel.h; sourceTree = "<group>"; };
-		6E1FD69020FF2C57002D9D2F /* CommonTableViewSectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTableViewSectionModel.m; sourceTree = "<group>"; };
-		6E1FD69120FF2C57002D9D2F /* CommonTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTableViewModel.h; sourceTree = "<group>"; };
-		6E1FD69220FF2C57002D9D2F /* CommonRowModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonRowModel.m; sourceTree = "<group>"; };
-		6E1FD69320FF2C57002D9D2F /* CommonTableViewRowModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTableViewRowModel.h; sourceTree = "<group>"; };
-		6E1FD69420FF2C57002D9D2F /* CommonTableViewSectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTableViewSectionModel.h; sourceTree = "<group>"; };
-		6E1FD69520FF2C57002D9D2F /* CommonSectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonSectionModel.m; sourceTree = "<group>"; };
-		6E1FD69720FF2C57002D9D2F /* CommonTableViewRowModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTableViewRowModel.m; sourceTree = "<group>"; };
-		6E1FD69820FF2C57002D9D2F /* CommonRowModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonRowModel.h; sourceTree = "<group>"; };
-		6E1FD69920FF2C57002D9D2F /* CommonTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTableViewModel.m; sourceTree = "<group>"; };
-		6E1FD6A520FF2F06002D9D2F /* CommonTableVieweHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonTableVieweHeaderView.h; sourceTree = "<group>"; };
-		6E1FD6A620FF2F06002D9D2F /* CommonTableVieweHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonTableVieweHeaderView.m; sourceTree = "<group>"; };
-		6E1FD6A920FF3034002D9D2F /* CommonModelDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonModelDefine.h; sourceTree = "<group>"; };
-		6E1FD6B120FF4208002D9D2F /* CommonTableViewHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonTableViewHelper.h; sourceTree = "<group>"; };
-		6E1FD6B220FF4208002D9D2F /* CommonTableViewHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonTableViewHelper.m; sourceTree = "<group>"; };
-		6E1FD6BA20FF43B8002D9D2F /* UITableView+Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableView+Category.h"; sourceTree = "<group>"; };
-		6E1FD6BB20FF43B8002D9D2F /* UITableView+Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Category.m"; sourceTree = "<group>"; };
+		6E1FD6A520FF2F06002D9D2F /* CommonTableViewHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonTableViewHeaderView.h; sourceTree = "<group>"; };
+		6E1FD6A620FF2F06002D9D2F /* CommonTableViewHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonTableViewHeaderView.m; sourceTree = "<group>"; };
+		6E1FD6BE210036CE002D9D2F /* CommonM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonM.h; sourceTree = "<group>"; };
+		6E1FD6BF210036CE002D9D2F /* CommonM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonM.m; sourceTree = "<group>"; };
+		6E1FD6C7210038FB002D9D2F /* CommonModelDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonModelDefine.h; sourceTree = "<group>"; };
+		6E1FD6F321003ECE002D9D2F /* QSPViewVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSPViewVM.m; sourceTree = "<group>"; };
+		6E1FD6F421003ECE002D9D2F /* QSPTableViewSectionVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSPTableViewSectionVM.h; sourceTree = "<group>"; };
+		6E1FD6F621003ECE002D9D2F /* QSPViewVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSPViewVM.h; sourceTree = "<group>"; };
+		6E1FD6F721003ECE002D9D2F /* QSPTableViewSectionVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSPTableViewSectionVM.m; sourceTree = "<group>"; };
+		6E1FD70021003F35002D9D2F /* QSPTableViewVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSPTableViewVM.h; sourceTree = "<group>"; };
+		6E1FD70121003F35002D9D2F /* QSPTableViewVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSPTableViewVM.m; sourceTree = "<group>"; };
+		6E1FD70421005DD5002D9D2F /* QSPTableViewCellVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSPTableViewCellVM.h; sourceTree = "<group>"; };
+		6E1FD70521005DD5002D9D2F /* QSPTableViewCellVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSPTableViewCellVM.m; sourceTree = "<group>"; };
+		6E1FD70821007A21002D9D2F /* QSPTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSPTableViewCell.h; sourceTree = "<group>"; };
+		6E1FD70921007A21002D9D2F /* QSPTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSPTableViewCell.m; sourceTree = "<group>"; };
+		6E1FD71021009EE9002D9D2F /* QSPTableViewHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSPTableViewHeaderView.h; sourceTree = "<group>"; };
+		6E1FD71121009EE9002D9D2F /* QSPTableViewHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSPTableViewHeaderView.m; sourceTree = "<group>"; };
+		6E1FD7222101DFC3002D9D2F /* UITableView+QSPMVVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableView+QSPMVVM.h"; sourceTree = "<group>"; };
+		6E1FD7232101DFC3002D9D2F /* UITableView+QSPMVVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableView+QSPMVVM.m"; sourceTree = "<group>"; };
+		6E1FD72621056752002D9D2F /* QSPTableViewFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSPTableViewFooterView.h; sourceTree = "<group>"; };
+		6E1FD72721056752002D9D2F /* QSPTableViewFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSPTableViewFooterView.m; sourceTree = "<group>"; };
+		6E1FD72A2105B7BE002D9D2F /* QSPTableViewSectionM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSPTableViewSectionM.h; sourceTree = "<group>"; };
+		6E1FD72B2105B7BE002D9D2F /* QSPTableViewSectionM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSPTableViewSectionM.m; sourceTree = "<group>"; };
+		6EDF649E2105D4B600D67A53 /* CommonTableViewCellVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonTableViewCellVM.h; sourceTree = "<group>"; };
+		6EDF649F2105D4B600D67A53 /* CommonTableViewCellVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonTableViewCellVM.m; sourceTree = "<group>"; };
+		6EDF64A12105E68A00D67A53 /* CommonTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonTableViewCell.h; sourceTree = "<group>"; };
+		6EDF64A22105E68A00D67A53 /* CommonTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonTableViewCell.m; sourceTree = "<group>"; };
+		6EF483472105FCE600EA0CEB /* CommonTableViewSectionVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonTableViewSectionVM.h; sourceTree = "<group>"; };
+		6EF483482105FCE600EA0CEB /* CommonTableViewSectionVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonTableViewSectionVM.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +122,7 @@
 		6E1FD5D620FC6B18002D9D2F = {
 			isa = PBXGroup;
 			children = (
+				6E1FD6F021003ECE002D9D2F /* QSPMVVM */,
 				6E1FD66320FCC696002D9D2F /* Common */,
 				6E1FD5FD20FC6B5D002D9D2F /* ThreadManagement */,
 				6E1FD64E20FCC513002D9D2F /* RunLoops */,
@@ -195,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				6E1FD6B520FF4285002D9D2F /* Category */,
+				6E1FD6C2210038FB002D9D2F /* ViewModel */,
 				6E1FD6B020FF41D1002D9D2F /* Helper */,
 				6E1FD69A20FF2C57002D9D2F /* View */,
 				6E1FD68E20FF2C57002D9D2F /* Model */,
@@ -205,17 +228,8 @@
 		6E1FD68E20FF2C57002D9D2F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6E1FD6A920FF3034002D9D2F /* CommonModelDefine.h */,
-				6E1FD69120FF2C57002D9D2F /* CommonTableViewModel.h */,
-				6E1FD69920FF2C57002D9D2F /* CommonTableViewModel.m */,
-				6E1FD69420FF2C57002D9D2F /* CommonTableViewSectionModel.h */,
-				6E1FD69020FF2C57002D9D2F /* CommonTableViewSectionModel.m */,
-				6E1FD68F20FF2C57002D9D2F /* CommonSectionModel.h */,
-				6E1FD69520FF2C57002D9D2F /* CommonSectionModel.m */,
-				6E1FD69320FF2C57002D9D2F /* CommonTableViewRowModel.h */,
-				6E1FD69720FF2C57002D9D2F /* CommonTableViewRowModel.m */,
-				6E1FD69820FF2C57002D9D2F /* CommonRowModel.h */,
-				6E1FD69220FF2C57002D9D2F /* CommonRowModel.m */,
+				6E1FD6BE210036CE002D9D2F /* CommonM.h */,
+				6E1FD6BF210036CE002D9D2F /* CommonM.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -223,8 +237,10 @@
 		6E1FD69A20FF2C57002D9D2F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				6E1FD6A520FF2F06002D9D2F /* CommonTableVieweHeaderView.h */,
-				6E1FD6A620FF2F06002D9D2F /* CommonTableVieweHeaderView.m */,
+				6EDF64A12105E68A00D67A53 /* CommonTableViewCell.h */,
+				6EDF64A22105E68A00D67A53 /* CommonTableViewCell.m */,
+				6E1FD6A520FF2F06002D9D2F /* CommonTableViewHeaderView.h */,
+				6E1FD6A620FF2F06002D9D2F /* CommonTableViewHeaderView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -232,8 +248,6 @@
 		6E1FD6B020FF41D1002D9D2F /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				6E1FD6B120FF4208002D9D2F /* CommonTableViewHelper.h */,
-				6E1FD6B220FF4208002D9D2F /* CommonTableViewHelper.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -241,8 +255,75 @@
 		6E1FD6B520FF4285002D9D2F /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				6E1FD6BA20FF43B8002D9D2F /* UITableView+Category.h */,
-				6E1FD6BB20FF43B8002D9D2F /* UITableView+Category.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		6E1FD6C2210038FB002D9D2F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6E1FD6C7210038FB002D9D2F /* CommonModelDefine.h */,
+				6EDF649E2105D4B600D67A53 /* CommonTableViewCellVM.h */,
+				6EDF649F2105D4B600D67A53 /* CommonTableViewCellVM.m */,
+				6EF483472105FCE600EA0CEB /* CommonTableViewSectionVM.h */,
+				6EF483482105FCE600EA0CEB /* CommonTableViewSectionVM.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		6E1FD6F021003ECE002D9D2F /* QSPMVVM */ = {
+			isa = PBXGroup;
+			children = (
+				6E1FD7212101DFAA002D9D2F /* Category */,
+				6E1FD6F121003ECE002D9D2F /* ViewModel */,
+				6E1FD6F821003ECE002D9D2F /* Model */,
+				6E1FD6F921003ECE002D9D2F /* View */,
+			);
+			path = QSPMVVM;
+			sourceTree = "<group>";
+		};
+		6E1FD6F121003ECE002D9D2F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6E1FD6F621003ECE002D9D2F /* QSPViewVM.h */,
+				6E1FD6F321003ECE002D9D2F /* QSPViewVM.m */,
+				6E1FD70421005DD5002D9D2F /* QSPTableViewCellVM.h */,
+				6E1FD70521005DD5002D9D2F /* QSPTableViewCellVM.m */,
+				6E1FD6F421003ECE002D9D2F /* QSPTableViewSectionVM.h */,
+				6E1FD6F721003ECE002D9D2F /* QSPTableViewSectionVM.m */,
+				6E1FD70021003F35002D9D2F /* QSPTableViewVM.h */,
+				6E1FD70121003F35002D9D2F /* QSPTableViewVM.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		6E1FD6F821003ECE002D9D2F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6E1FD72A2105B7BE002D9D2F /* QSPTableViewSectionM.h */,
+				6E1FD72B2105B7BE002D9D2F /* QSPTableViewSectionM.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6E1FD6F921003ECE002D9D2F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6E1FD70821007A21002D9D2F /* QSPTableViewCell.h */,
+				6E1FD70921007A21002D9D2F /* QSPTableViewCell.m */,
+				6E1FD71021009EE9002D9D2F /* QSPTableViewHeaderView.h */,
+				6E1FD71121009EE9002D9D2F /* QSPTableViewHeaderView.m */,
+				6E1FD72621056752002D9D2F /* QSPTableViewFooterView.h */,
+				6E1FD72721056752002D9D2F /* QSPTableViewFooterView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6E1FD7212101DFAA002D9D2F /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				6E1FD7222101DFC3002D9D2F /* UITableView+QSPMVVM.h */,
+				6E1FD7232101DFC3002D9D2F /* UITableView+QSPMVVM.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -350,16 +431,22 @@
 			files = (
 				6E1FD60320FC6B5D002D9D2F /* ViewController.m in Sources */,
 				6E1FD60E20FC6B5D002D9D2F /* main.m in Sources */,
-				6E1FD6A120FF2C57002D9D2F /* CommonTableViewRowModel.m in Sources */,
-				6E1FD69D20FF2C57002D9D2F /* CommonRowModel.m in Sources */,
-				6E1FD6A720FF2F06002D9D2F /* CommonTableVieweHeaderView.m in Sources */,
-				6E1FD6A320FF2C57002D9D2F /* CommonTableViewModel.m in Sources */,
-				6E1FD69B20FF2C57002D9D2F /* CommonTableViewSectionModel.m in Sources */,
-				6E1FD69F20FF2C57002D9D2F /* CommonSectionModel.m in Sources */,
-				6E1FD6B320FF4208002D9D2F /* CommonTableViewHelper.m in Sources */,
+				6E1FD6A720FF2F06002D9D2F /* CommonTableViewHeaderView.m in Sources */,
+				6E1FD70A21007A21002D9D2F /* QSPTableViewCell.m in Sources */,
+				6E1FD6FA21003ECF002D9D2F /* QSPViewVM.m in Sources */,
+				6E1FD70221003F35002D9D2F /* QSPTableViewVM.m in Sources */,
+				6EF483492105FCE600EA0CEB /* CommonTableViewSectionVM.m in Sources */,
+				6E1FD72C2105B7BE002D9D2F /* QSPTableViewSectionM.m in Sources */,
+				6E1FD71221009EE9002D9D2F /* QSPTableViewHeaderView.m in Sources */,
+				6E1FD7242101DFC3002D9D2F /* UITableView+QSPMVVM.m in Sources */,
+				6E1FD70621005DD5002D9D2F /* QSPTableViewCellVM.m in Sources */,
+				6E1FD6FE21003ECF002D9D2F /* QSPTableViewSectionVM.m in Sources */,
+				6EDF64A32105E68A00D67A53 /* CommonTableViewCell.m in Sources */,
+				6E1FD6C0210036CE002D9D2F /* CommonM.m in Sources */,
 				6E1FD60020FC6B5D002D9D2F /* AppDelegate.m in Sources */,
 				6E1FD61D20FCA466002D9D2F /* MainViewController.m in Sources */,
-				6E1FD6BC20FF43B8002D9D2F /* UITableView+Category.m in Sources */,
+				6EDF64A02105D4B600D67A53 /* CommonTableViewCellVM.m in Sources */,
+				6E1FD72821056752002D9D2F /* QSPTableViewFooterView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,15 +456,18 @@
 			files = (
 				6E1FD65420FCC513002D9D2F /* ViewController.m in Sources */,
 				6E1FD65F20FCC514002D9D2F /* main.m in Sources */,
+				6E1FD70321003F35002D9D2F /* QSPTableViewVM.m in Sources */,
+				6E1FD71321009EE9002D9D2F /* QSPTableViewHeaderView.m in Sources */,
 				6E1FD65120FCC513002D9D2F /* AppDelegate.m in Sources */,
-				6E1FD69E20FF2C57002D9D2F /* CommonRowModel.m in Sources */,
-				6E1FD6A220FF2C57002D9D2F /* CommonTableViewRowModel.m in Sources */,
-				6E1FD69C20FF2C57002D9D2F /* CommonTableViewSectionModel.m in Sources */,
-				6E1FD6B420FF4208002D9D2F /* CommonTableViewHelper.m in Sources */,
-				6E1FD6A020FF2C57002D9D2F /* CommonSectionModel.m in Sources */,
-				6E1FD6A420FF2C57002D9D2F /* CommonTableViewModel.m in Sources */,
-				6E1FD6BD20FF43B8002D9D2F /* UITableView+Category.m in Sources */,
-				6E1FD6A820FF2F06002D9D2F /* CommonTableVieweHeaderView.m in Sources */,
+				6E1FD70721005DD5002D9D2F /* QSPTableViewCellVM.m in Sources */,
+				6E1FD7252101DFC3002D9D2F /* UITableView+QSPMVVM.m in Sources */,
+				6E1FD72921056752002D9D2F /* QSPTableViewFooterView.m in Sources */,
+				6E1FD72D2105B7BE002D9D2F /* QSPTableViewSectionM.m in Sources */,
+				6E1FD6FF21003ECF002D9D2F /* QSPTableViewSectionVM.m in Sources */,
+				6E1FD6C1210036CE002D9D2F /* CommonM.m in Sources */,
+				6E1FD70B21007A21002D9D2F /* QSPTableViewCell.m in Sources */,
+				6E1FD6FB21003ECF002D9D2F /* QSPViewVM.m in Sources */,
+				6E1FD6A820FF2F06002D9D2F /* CommonTableViewHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -535,7 +625,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ThreadManagement/Other/System/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -552,7 +642,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ThreadManagement/Other/System/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
