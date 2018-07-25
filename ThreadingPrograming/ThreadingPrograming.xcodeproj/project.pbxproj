@@ -45,6 +45,8 @@
 		6EDF64A02105D4B600D67A53 /* CommonTableViewCellVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF649F2105D4B600D67A53 /* CommonTableViewCellVM.m */; };
 		6EDF64A32105E68A00D67A53 /* CommonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF64A22105E68A00D67A53 /* CommonTableViewCell.m */; };
 		6EF483492105FCE600EA0CEB /* CommonTableViewSectionVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF483482105FCE600EA0CEB /* CommonTableViewSectionVM.m */; };
+		6EF4834D21087D3100EA0CEB /* 线程编程指南翻译第一篇（关于线程编程）.md in Resources */ = {isa = PBXBuildFile; fileRef = 6EF4834B21087D3100EA0CEB /* 线程编程指南翻译第一篇（关于线程编程）.md */; };
+		6EF4834E21087D3100EA0CEB /* 线程编程指南翻译第二篇（线程管理）.md in Resources */ = {isa = PBXBuildFile; fileRef = 6EF4834C21087D3100EA0CEB /* 线程编程指南翻译第二篇（线程管理）.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,6 +101,8 @@
 		6EDF64A22105E68A00D67A53 /* CommonTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonTableViewCell.m; sourceTree = "<group>"; };
 		6EF483472105FCE600EA0CEB /* CommonTableViewSectionVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonTableViewSectionVM.h; sourceTree = "<group>"; };
 		6EF483482105FCE600EA0CEB /* CommonTableViewSectionVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonTableViewSectionVM.m; sourceTree = "<group>"; };
+		6EF4834B21087D3100EA0CEB /* 线程编程指南翻译第一篇（关于线程编程）.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "线程编程指南翻译第一篇（关于线程编程）.md"; sourceTree = "<group>"; };
+		6EF4834C21087D3100EA0CEB /* 线程编程指南翻译第二篇（线程管理）.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "线程编程指南翻译第二篇（线程管理）.md"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,9 +220,8 @@
 		6E1FD66320FCC696002D9D2F /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				6E1FD6B520FF4285002D9D2F /* Category */,
+				6EF4834A21087D3100EA0CEB /* Source */,
 				6E1FD6C2210038FB002D9D2F /* ViewModel */,
-				6E1FD6B020FF41D1002D9D2F /* Helper */,
 				6E1FD69A20FF2C57002D9D2F /* View */,
 				6E1FD68E20FF2C57002D9D2F /* Model */,
 			);
@@ -243,20 +246,6 @@
 				6E1FD6A620FF2F06002D9D2F /* CommonTableViewHeaderView.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		6E1FD6B020FF41D1002D9D2F /* Helper */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Helper;
-			sourceTree = "<group>";
-		};
-		6E1FD6B520FF4285002D9D2F /* Category */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Category;
 			sourceTree = "<group>";
 		};
 		6E1FD6C2210038FB002D9D2F /* ViewModel */ = {
@@ -326,6 +315,15 @@
 				6E1FD7232101DFC3002D9D2F /* UITableView+QSPMVVM.m */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		6EF4834A21087D3100EA0CEB /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				6EF4834B21087D3100EA0CEB /* 线程编程指南翻译第一篇（关于线程编程）.md */,
+				6EF4834C21087D3100EA0CEB /* 线程编程指南翻译第二篇（线程管理）.md */,
+			);
+			path = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -406,8 +404,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EF4834E21087D3100EA0CEB /* 线程编程指南翻译第二篇（线程管理）.md in Resources */,
 				6E1FD60B20FC6B5D002D9D2F /* LaunchScreen.storyboard in Resources */,
 				6E1FD60820FC6B5D002D9D2F /* Assets.xcassets in Resources */,
+				6EF4834D21087D3100EA0CEB /* 线程编程指南翻译第一篇（关于线程编程）.md in Resources */,
 				6E1FD60620FC6B5D002D9D2F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
