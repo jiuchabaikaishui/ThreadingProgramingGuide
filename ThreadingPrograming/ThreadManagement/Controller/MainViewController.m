@@ -87,9 +87,9 @@
                 });
             }).addRowVMCreate(CommonTableViewCellVM.class, ^(CommonTableViewCellVM *cellVM){
                 cellVM.selectedBlockSet(^(UITableView *tableView, NSIndexPath *indexPath){
-                    [weakSelf threadMainRoutine];
+                    [NSThread detachNewThreadSelector:@selector(threadMainRoutine) toTarget:weakSelf withObject:nil];
                 }).dataMCreate(CommonM.class, ^(CommonM *commonM){
-                    commonM.titleSet(@"终止线程").detailSet(@"使用运行循环输入源来退出线程，只有线程主入口例程中的外观结构，不包括设置自动释放池或配置要执行的实际工作的步骤，所以会进入死循环。");
+                    commonM.titleSet(@"终止线程").detailSet(@"使用运行循环输入源来退出线程，只有线程主入口例程中的外观结构，不包括设置自动释放池或配置要执行的实际工作的步骤。");
                 });
             }).dataMCreate(CommonM.class, ^(CommonM *commonM){
                 commonM.titleSet(@"编写线程入口").detailSet(@"根据设计，在编写入口时可能需要执行一些额外的步骤。");
@@ -151,16 +151,24 @@ void launchThread(void *data) {
     while (moreWorkToDo && (!exitNow)) {
         //在这里做一大部分工作
         //完成后更改moreWorkToDo布尔值。
+        moreWorkToDo = NO;
         
         //如果输入源没有等待触发，则runLoop立即超时
         [runLoop runUntilDate:[NSDate date]];
         
         //检查输入源处理程序是否更改了exitNow值
         exitNow = [[threadDict valueForKey:@"ThreadShouldExitNow"] boolValue];
+        NSLog(@"-----------%s\nexitNow:%i", __FUNCTION__, exitNow);
     }
 }
 - (void)myInstallCustomInputSource {
-    
+    //创建并安排计时器。
+    [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(doFireTimer:) userInfo:nil repeats:NO];
+}
+- (void)doFireTimer:(NSTimer *)sender {
+    NSLog(@"-----------%s\ntimer:%@", __FUNCTION__, sender);
+    NSMutableDictionary *threadDict = [[NSThread currentThread] threadDictionary];
+    [threadDict setValue:[NSNumber numberWithBool:YES] forKey:@"ThreadShouldExitNow"];
 }
 
 @end

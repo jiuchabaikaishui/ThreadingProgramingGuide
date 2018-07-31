@@ -19,10 +19,6 @@
 		6E1FD65920FCC514002D9D2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E1FD65820FCC514002D9D2F /* Assets.xcassets */; };
 		6E1FD65C20FCC514002D9D2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E1FD65A20FCC514002D9D2F /* LaunchScreen.storyboard */; };
 		6E1FD65F20FCC514002D9D2F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD65E20FCC514002D9D2F /* main.m */; };
-		6E1FD6A720FF2F06002D9D2F /* CommonTableViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD6A620FF2F06002D9D2F /* CommonTableViewHeaderView.m */; };
-		6E1FD6A820FF2F06002D9D2F /* CommonTableViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD6A620FF2F06002D9D2F /* CommonTableViewHeaderView.m */; };
-		6E1FD6C0210036CE002D9D2F /* CommonM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD6BF210036CE002D9D2F /* CommonM.m */; };
-		6E1FD6C1210036CE002D9D2F /* CommonM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD6BF210036CE002D9D2F /* CommonM.m */; };
 		6E1FD6FA21003ECF002D9D2F /* QSPViewVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD6F321003ECE002D9D2F /* QSPViewVM.m */; };
 		6E1FD6FB21003ECF002D9D2F /* QSPViewVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD6F321003ECE002D9D2F /* QSPViewVM.m */; };
 		6E1FD6FE21003ECF002D9D2F /* QSPTableViewSectionVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD6F721003ECE002D9D2F /* QSPTableViewSectionVM.m */; };
@@ -43,15 +39,25 @@
 		6E1FD72D2105B7BE002D9D2F /* QSPTableViewSectionM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1FD72B2105B7BE002D9D2F /* QSPTableViewSectionM.m */; };
 		6E891DBD210FF1CC00B2443D /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E891DBB210FF1CC00B2443D /* MainViewController.m */; };
 		6E891DC2210FF2E400B2443D /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E891DC1210FF2E400B2443D /* MainViewController.m */; };
-		6EDF64A02105D4B600D67A53 /* CommonTableViewCellVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF649F2105D4B600D67A53 /* CommonTableViewCellVM.m */; };
-		6EDF64A32105E68A00D67A53 /* CommonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF64A22105E68A00D67A53 /* CommonTableViewCell.m */; };
-		6EF483492105FCE600EA0CEB /* CommonTableViewSectionVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF483482105FCE600EA0CEB /* CommonTableViewSectionVM.m */; };
-		6EF4834D21087D3100EA0CEB /* 线程编程指南翻译第一篇（关于线程编程）.md in Resources */ = {isa = PBXBuildFile; fileRef = 6EF4834B21087D3100EA0CEB /* 线程编程指南翻译第一篇（关于线程编程）.md */; };
-		6EF4834E21087D3100EA0CEB /* 线程编程指南翻译第二篇（线程管理）.md in Resources */ = {isa = PBXBuildFile; fileRef = 6EF4834C21087D3100EA0CEB /* 线程编程指南翻译第二篇（线程管理）.md */; };
+		6E891DD521100DB800B2443D /* CommonTableViewSectionVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E891DC721100DB800B2443D /* CommonTableViewSectionVM.m */; };
+		6E891DD621100DB800B2443D /* CommonTableViewSectionVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E891DC721100DB800B2443D /* CommonTableViewSectionVM.m */; };
+		6E891DD721100DB800B2443D /* CommonTableViewCellVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E891DC821100DB800B2443D /* CommonTableViewCellVM.m */; };
+		6E891DD821100DB800B2443D /* CommonTableViewCellVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E891DC821100DB800B2443D /* CommonTableViewCellVM.m */; };
+		6E891DD921100DB800B2443D /* 线程编程指南翻译第一篇（关于线程编程）.md in Resources */ = {isa = PBXBuildFile; fileRef = 6E891DCA21100DB800B2443D /* 线程编程指南翻译第一篇（关于线程编程）.md */; };
+		6E891DDA21100DB800B2443D /* 线程编程指南翻译第一篇（关于线程编程）.md in Resources */ = {isa = PBXBuildFile; fileRef = 6E891DCA21100DB800B2443D /* 线程编程指南翻译第一篇（关于线程编程）.md */; };
+		6E891DDB21100DB800B2443D /* 线程编程指南翻译第二篇（线程管理）.md in Resources */ = {isa = PBXBuildFile; fileRef = 6E891DCB21100DB800B2443D /* 线程编程指南翻译第二篇（线程管理）.md */; };
+		6E891DDC21100DB800B2443D /* 线程编程指南翻译第二篇（线程管理）.md in Resources */ = {isa = PBXBuildFile; fileRef = 6E891DCB21100DB800B2443D /* 线程编程指南翻译第二篇（线程管理）.md */; };
+		6E891DDD21100DB800B2443D /* CommonM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E891DCF21100DB800B2443D /* CommonM.m */; };
+		6E891DDE21100DB800B2443D /* CommonM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E891DCF21100DB800B2443D /* CommonM.m */; };
+		6E891DDF21100DB800B2443D /* CommonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E891DD321100DB800B2443D /* CommonTableViewCell.m */; };
+		6E891DE021100DB800B2443D /* CommonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E891DD321100DB800B2443D /* CommonTableViewCell.m */; };
+		6E891DE121100DB800B2443D /* CommonTableViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E891DD421100DB800B2443D /* CommonTableViewHeaderView.m */; };
+		6E891DE221100DB800B2443D /* CommonTableViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E891DD421100DB800B2443D /* CommonTableViewHeaderView.m */; };
+		6E891DE521106CE400B2443D /* RunLoopSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E891DE421106CE400B2443D /* RunLoopSource.m */; };
+		6E891DE621106CE400B2443D /* RunLoopSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E891DE421106CE400B2443D /* RunLoopSource.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		18497909210F5BE300BEF041 /* CommonDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonDefine.h; sourceTree = "<group>"; };
 		6E1FD5FC20FC6B5D002D9D2F /* ThreadManagement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThreadManagement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E1FD5FE20FC6B5D002D9D2F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6E1FD5FF20FC6B5D002D9D2F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -72,10 +78,6 @@
 		6E1FD65B20FCC514002D9D2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6E1FD65D20FCC514002D9D2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6E1FD65E20FCC514002D9D2F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		6E1FD6A520FF2F06002D9D2F /* CommonTableViewHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonTableViewHeaderView.h; sourceTree = "<group>"; };
-		6E1FD6A620FF2F06002D9D2F /* CommonTableViewHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonTableViewHeaderView.m; sourceTree = "<group>"; };
-		6E1FD6BE210036CE002D9D2F /* CommonM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonM.h; sourceTree = "<group>"; };
-		6E1FD6BF210036CE002D9D2F /* CommonM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonM.m; sourceTree = "<group>"; };
 		6E1FD6F321003ECE002D9D2F /* QSPViewVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSPViewVM.m; sourceTree = "<group>"; };
 		6E1FD6F421003ECE002D9D2F /* QSPTableViewSectionVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSPTableViewSectionVM.h; sourceTree = "<group>"; };
 		6E1FD6F621003ECE002D9D2F /* QSPViewVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSPViewVM.h; sourceTree = "<group>"; };
@@ -98,14 +100,21 @@
 		6E891DBC210FF1CC00B2443D /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		6E891DC0210FF2E400B2443D /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		6E891DC1210FF2E400B2443D /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		6EDF649E2105D4B600D67A53 /* CommonTableViewCellVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonTableViewCellVM.h; sourceTree = "<group>"; };
-		6EDF649F2105D4B600D67A53 /* CommonTableViewCellVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonTableViewCellVM.m; sourceTree = "<group>"; };
-		6EDF64A12105E68A00D67A53 /* CommonTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonTableViewCell.h; sourceTree = "<group>"; };
-		6EDF64A22105E68A00D67A53 /* CommonTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonTableViewCell.m; sourceTree = "<group>"; };
-		6EF483472105FCE600EA0CEB /* CommonTableViewSectionVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonTableViewSectionVM.h; sourceTree = "<group>"; };
-		6EF483482105FCE600EA0CEB /* CommonTableViewSectionVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonTableViewSectionVM.m; sourceTree = "<group>"; };
-		6EF4834B21087D3100EA0CEB /* 线程编程指南翻译第一篇（关于线程编程）.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "线程编程指南翻译第一篇（关于线程编程）.md"; sourceTree = "<group>"; };
-		6EF4834C21087D3100EA0CEB /* 线程编程指南翻译第二篇（线程管理）.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "线程编程指南翻译第二篇（线程管理）.md"; sourceTree = "<group>"; };
+		6E891DC521100DB800B2443D /* CommonTableViewSectionVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTableViewSectionVM.h; sourceTree = "<group>"; };
+		6E891DC621100DB800B2443D /* CommonTableViewCellVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTableViewCellVM.h; sourceTree = "<group>"; };
+		6E891DC721100DB800B2443D /* CommonTableViewSectionVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTableViewSectionVM.m; sourceTree = "<group>"; };
+		6E891DC821100DB800B2443D /* CommonTableViewCellVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTableViewCellVM.m; sourceTree = "<group>"; };
+		6E891DCA21100DB800B2443D /* 线程编程指南翻译第一篇（关于线程编程）.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "线程编程指南翻译第一篇（关于线程编程）.md"; sourceTree = "<group>"; };
+		6E891DCB21100DB800B2443D /* 线程编程指南翻译第二篇（线程管理）.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "线程编程指南翻译第二篇（线程管理）.md"; sourceTree = "<group>"; };
+		6E891DCD21100DB800B2443D /* CommonM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonM.h; sourceTree = "<group>"; };
+		6E891DCE21100DB800B2443D /* CommonDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonDefine.h; sourceTree = "<group>"; };
+		6E891DCF21100DB800B2443D /* CommonM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonM.m; sourceTree = "<group>"; };
+		6E891DD121100DB800B2443D /* CommonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTableViewCell.h; sourceTree = "<group>"; };
+		6E891DD221100DB800B2443D /* CommonTableViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTableViewHeaderView.h; sourceTree = "<group>"; };
+		6E891DD321100DB800B2443D /* CommonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTableViewCell.m; sourceTree = "<group>"; };
+		6E891DD421100DB800B2443D /* CommonTableViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTableViewHeaderView.m; sourceTree = "<group>"; };
+		6E891DE321106CE400B2443D /* RunLoopSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RunLoopSource.h; sourceTree = "<group>"; };
+		6E891DE421106CE400B2443D /* RunLoopSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RunLoopSource.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,7 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				6E1FD6F021003ECE002D9D2F /* QSPMVVM */,
-				6E1FD66320FCC696002D9D2F /* Common */,
+				6E891DC321100DB800B2443D /* Common */,
 				6E1FD5FD20FC6B5D002D9D2F /* ThreadManagement */,
 				6E1FD64E20FCC513002D9D2F /* RunLoops */,
 				6E1FD5E020FC6B18002D9D2F /* Products */,
@@ -208,49 +217,6 @@
 			path = RunLoops;
 			sourceTree = "<group>";
 		};
-		6E1FD66320FCC696002D9D2F /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				6EF4834A21087D3100EA0CEB /* Source */,
-				6E1FD6C2210038FB002D9D2F /* ViewModel */,
-				6E1FD69A20FF2C57002D9D2F /* View */,
-				6E1FD68E20FF2C57002D9D2F /* Model */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
-		6E1FD68E20FF2C57002D9D2F /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				6E1FD6BE210036CE002D9D2F /* CommonM.h */,
-				6E1FD6BF210036CE002D9D2F /* CommonM.m */,
-				18497909210F5BE300BEF041 /* CommonDefine.h */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		6E1FD69A20FF2C57002D9D2F /* View */ = {
-			isa = PBXGroup;
-			children = (
-				6EDF64A12105E68A00D67A53 /* CommonTableViewCell.h */,
-				6EDF64A22105E68A00D67A53 /* CommonTableViewCell.m */,
-				6E1FD6A520FF2F06002D9D2F /* CommonTableViewHeaderView.h */,
-				6E1FD6A620FF2F06002D9D2F /* CommonTableViewHeaderView.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		6E1FD6C2210038FB002D9D2F /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				6EDF649E2105D4B600D67A53 /* CommonTableViewCellVM.h */,
-				6EDF649F2105D4B600D67A53 /* CommonTableViewCellVM.m */,
-				6EF483472105FCE600EA0CEB /* CommonTableViewSectionVM.h */,
-				6EF483482105FCE600EA0CEB /* CommonTableViewSectionVM.m */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		6E1FD6F021003ECE002D9D2F /* QSPMVVM */ = {
 			isa = PBXGroup;
 			children = (
@@ -311,6 +277,8 @@
 		6E891DB3210FF16A00B2443D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6E891DE321106CE400B2443D /* RunLoopSource.h */,
+				6E891DE421106CE400B2443D /* RunLoopSource.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -378,13 +346,56 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		6EF4834A21087D3100EA0CEB /* Source */ = {
+		6E891DC321100DB800B2443D /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				6EF4834B21087D3100EA0CEB /* 线程编程指南翻译第一篇（关于线程编程）.md */,
-				6EF4834C21087D3100EA0CEB /* 线程编程指南翻译第二篇（线程管理）.md */,
+				6E891DC421100DB800B2443D /* ViewModel */,
+				6E891DC921100DB800B2443D /* Source */,
+				6E891DCC21100DB800B2443D /* Model */,
+				6E891DD021100DB800B2443D /* View */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		6E891DC421100DB800B2443D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6E891DC521100DB800B2443D /* CommonTableViewSectionVM.h */,
+				6E891DC621100DB800B2443D /* CommonTableViewCellVM.h */,
+				6E891DC721100DB800B2443D /* CommonTableViewSectionVM.m */,
+				6E891DC821100DB800B2443D /* CommonTableViewCellVM.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		6E891DC921100DB800B2443D /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				6E891DCA21100DB800B2443D /* 线程编程指南翻译第一篇（关于线程编程）.md */,
+				6E891DCB21100DB800B2443D /* 线程编程指南翻译第二篇（线程管理）.md */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		6E891DCC21100DB800B2443D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6E891DCD21100DB800B2443D /* CommonM.h */,
+				6E891DCE21100DB800B2443D /* CommonDefine.h */,
+				6E891DCF21100DB800B2443D /* CommonM.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6E891DD021100DB800B2443D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6E891DD121100DB800B2443D /* CommonTableViewCell.h */,
+				6E891DD221100DB800B2443D /* CommonTableViewHeaderView.h */,
+				6E891DD321100DB800B2443D /* CommonTableViewCell.m */,
+				6E891DD421100DB800B2443D /* CommonTableViewHeaderView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -465,10 +476,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6EF4834E21087D3100EA0CEB /* 线程编程指南翻译第二篇（线程管理）.md in Resources */,
+				6E891DDB21100DB800B2443D /* 线程编程指南翻译第二篇（线程管理）.md in Resources */,
 				6E1FD60B20FC6B5D002D9D2F /* LaunchScreen.storyboard in Resources */,
 				6E1FD60820FC6B5D002D9D2F /* Assets.xcassets in Resources */,
-				6EF4834D21087D3100EA0CEB /* 线程编程指南翻译第一篇（关于线程编程）.md in Resources */,
+				6E891DD921100DB800B2443D /* 线程编程指南翻译第一篇（关于线程编程）.md in Resources */,
 				6E1FD60620FC6B5D002D9D2F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -477,8 +488,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E891DDC21100DB800B2443D /* 线程编程指南翻译第二篇（线程管理）.md in Resources */,
 				6E1FD65C20FCC514002D9D2F /* LaunchScreen.storyboard in Resources */,
 				6E1FD65920FCC514002D9D2F /* Assets.xcassets in Resources */,
+				6E891DDA21100DB800B2443D /* 线程编程指南翻译第一篇（关于线程编程）.md in Resources */,
 				6E1FD65720FCC513002D9D2F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -491,22 +504,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E1FD60320FC6B5D002D9D2F /* ViewController.m in Sources */,
+				6E891DD521100DB800B2443D /* CommonTableViewSectionVM.m in Sources */,
 				6E1FD60E20FC6B5D002D9D2F /* main.m in Sources */,
-				6E1FD6A720FF2F06002D9D2F /* CommonTableViewHeaderView.m in Sources */,
 				6E1FD70A21007A21002D9D2F /* QSPTableViewCell.m in Sources */,
+				6E891DD721100DB800B2443D /* CommonTableViewCellVM.m in Sources */,
+				6E891DDF21100DB800B2443D /* CommonTableViewCell.m in Sources */,
 				6E1FD6FA21003ECF002D9D2F /* QSPViewVM.m in Sources */,
 				6E1FD70221003F35002D9D2F /* QSPTableViewVM.m in Sources */,
-				6EF483492105FCE600EA0CEB /* CommonTableViewSectionVM.m in Sources */,
+				6E891DE121100DB800B2443D /* CommonTableViewHeaderView.m in Sources */,
 				6E1FD72C2105B7BE002D9D2F /* QSPTableViewSectionM.m in Sources */,
 				6E1FD71221009EE9002D9D2F /* QSPTableViewHeaderView.m in Sources */,
 				6E1FD7242101DFC3002D9D2F /* UITableView+QSPMVVM.m in Sources */,
+				6E891DE521106CE400B2443D /* RunLoopSource.m in Sources */,
+				6E891DDD21100DB800B2443D /* CommonM.m in Sources */,
 				6E1FD70621005DD5002D9D2F /* QSPTableViewCellVM.m in Sources */,
 				6E1FD6FE21003ECF002D9D2F /* QSPTableViewSectionVM.m in Sources */,
-				6EDF64A32105E68A00D67A53 /* CommonTableViewCell.m in Sources */,
 				6E891DBD210FF1CC00B2443D /* MainViewController.m in Sources */,
-				6E1FD6C0210036CE002D9D2F /* CommonM.m in Sources */,
 				6E1FD60020FC6B5D002D9D2F /* AppDelegate.m in Sources */,
-				6EDF64A02105D4B600D67A53 /* CommonTableViewCellVM.m in Sources */,
 				6E1FD72821056752002D9D2F /* QSPTableViewFooterView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -516,20 +530,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E1FD65420FCC513002D9D2F /* ViewController.m in Sources */,
+				6E891DD621100DB800B2443D /* CommonTableViewSectionVM.m in Sources */,
 				6E1FD65F20FCC514002D9D2F /* main.m in Sources */,
 				6E1FD70321003F35002D9D2F /* QSPTableViewVM.m in Sources */,
+				6E891DD821100DB800B2443D /* CommonTableViewCellVM.m in Sources */,
+				6E891DE021100DB800B2443D /* CommonTableViewCell.m in Sources */,
 				6E1FD71321009EE9002D9D2F /* QSPTableViewHeaderView.m in Sources */,
 				6E1FD65120FCC513002D9D2F /* AppDelegate.m in Sources */,
+				6E891DE221100DB800B2443D /* CommonTableViewHeaderView.m in Sources */,
 				6E1FD70721005DD5002D9D2F /* QSPTableViewCellVM.m in Sources */,
 				6E1FD7252101DFC3002D9D2F /* UITableView+QSPMVVM.m in Sources */,
 				6E1FD72921056752002D9D2F /* QSPTableViewFooterView.m in Sources */,
+				6E891DE621106CE400B2443D /* RunLoopSource.m in Sources */,
+				6E891DDE21100DB800B2443D /* CommonM.m in Sources */,
 				6E1FD72D2105B7BE002D9D2F /* QSPTableViewSectionM.m in Sources */,
 				6E1FD6FF21003ECF002D9D2F /* QSPTableViewSectionVM.m in Sources */,
-				6E1FD6C1210036CE002D9D2F /* CommonM.m in Sources */,
 				6E1FD70B21007A21002D9D2F /* QSPTableViewCell.m in Sources */,
 				6E1FD6FB21003ECF002D9D2F /* QSPViewVM.m in Sources */,
 				6E891DC2210FF2E400B2443D /* MainViewController.m in Sources */,
-				6E1FD6A820FF2F06002D9D2F /* CommonTableViewHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -720,7 +738,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = RunLoops/Info.plist;
+				INFOPLIST_FILE = RunLoops/Other/System/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -737,7 +755,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = RunLoops/Info.plist;
+				INFOPLIST_FILE = RunLoops/Other/System/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
