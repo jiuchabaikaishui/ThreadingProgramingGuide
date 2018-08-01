@@ -10,9 +10,27 @@
 
 @interface AppDelegate ()
 
+@property (strong, nonatomic) NSMutableArray *contexts;
+
 @end
 
 @implementation AppDelegate
+
+- (NSMutableArray *)contexts {
+    if (_contexts == nil) {
+        _contexts = [NSMutableArray arrayWithCapacity:1];
+    }
+    
+    return _contexts;
+}
+- (void)registerSource:(RunLoopContext *)context {
+    [self.contexts addObject:context];
+}
+- (void)removeSource:(RunLoopContext *)context {
+    if ([self.contexts containsObject:context]) {
+        [self.contexts removeObject:context];
+    }
+}
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

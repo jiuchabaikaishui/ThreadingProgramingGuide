@@ -8,8 +8,9 @@
 
 #import "MainViewController.h"
 #import "CommonDefine.h"
+#import <Foundation/Foundation.h>
 
-@interface MainViewController ()
+@interface MainViewController ()<NSPortDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -38,6 +39,32 @@
                 });
             }).dataMCreate(CommonM.class, ^(CommonM *model){
                 model.titleSet(@"使用运行循环对象").detailSet(@"运行循环对象提供了用于将输入源，计时器和运行循环观察器添加到运行循环然后运行它的主界面。每个线程都有一个与之关联的运行循环对象。在Cocoa中，此对象是NSRunLoop类的实例。在低级应用程序中，它是指向CFRunLoopRef opaque类型的指针。");
+            });
+        }).addSectionVMCreate(CommonTableViewSectionVM.class, ^(CommonTableViewSectionVM *sectionVM){
+            sectionVM.addRowVMCreate(CommonTableViewCellVM.class, ^(CommonTableViewCellVM *cellVM){
+                cellVM.selectedBlockSet(^(UITableView *tableView, NSIndexPath *indexPath){
+                    [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(myDoFireTimer1:) userInfo:nil repeats:YES];
+                }).dataMCreate(CommonM.class, ^(CommonM *model){
+                    model.titleSet(@"NSTimer类方法创建并调度计时器").detailSet(@"创建计时器并在默认模式（NSDefaultRunLoopMode）中将其添加到当前线程的运行循环中。");
+                });
+            }).addRowVMCreate(CommonTableViewCellVM.class, ^(CommonTableViewCellVM *cellVM){
+                cellVM.selectedBlockSet(^(UITableView *tableView, NSIndexPath *indexPath){
+                    NSTimer *timer = [[NSTimer alloc] initWithFireDate:[NSDate dateWithTimeIntervalSinceNow:1] interval:0.1 target:self selector:@selector(myDoFireTimer2:) userInfo:nil repeats:YES];
+                    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+                }).dataMCreate(CommonM.class, ^(CommonM *model){
+                    model.titleSet(@"NSTimer手动调度计时器").detailSet(@"可以手动调度计时器，方法是创建NSTimer对象，然后使用addTimer:forMode:方法将其添加到运行循环中NSRunLoop。");
+                });
+            }).addRowVMCreate(CommonTableViewCellVM.class, ^(CommonTableViewCellVM *cellVM){
+                cellVM.selectedBlockSet(^(UITableView *tableView, NSIndexPath *indexPath){
+                    CFRunLoopRef rf = CFRunLoopGetCurrent();
+                    CFRunLoopTimerContext context = {0, NULL, NULL, NULL, NULL};
+                    CFRunLoopTimerRef timer = CFRunLoopTimerCreate(kCFAllocatorDefault, 0.1, 0.3, 0, 0, &myCFTimerCallBack, &context);
+                    CFRunLoopAddTimer(rf, timer, kCFRunLoopDefaultMode);
+                }).dataMCreate(CommonM.class, ^(CommonM *model){
+                    model.titleSet(@"Core Foundation创建和调度计时器").detailSet(@"使用Core Foundation函数配置计时器，可以使用上下文结构传递计时器所需的任何自定义数据。");
+                });
+            }).dataMCreate(CommonM.class, ^(CommonM *model){
+                model.titleSet(@"配置定时器源").detailSet(@"要创建计时器源，要做的就是创建一个计时器对象并在运行循环上调度。在Cocoa中，您使用NSTimer类创建新的计时器对象，在Core Foundation中使用CFRunLoopTimerRef opaque类型。");
             });
         });
     });
@@ -92,11 +119,93 @@ void myRunLoopObserver(CFRunLoopObserverRef observer, CFRunLoopActivity activity
         if ((result == kCFRunLoopRunStopped) || (result == kCFRunLoopRunFinished))
             down = YES;
         
-        
         NSLog(@"----------%s\nresult:%i", __FUNCTION__, result);
         //在这里检查任何其他退出条件并设置
         //根据需要完成变量
     } while (!down);
+}
+- (void)myDoFireTimer1:(NSTimer *)sender {
+    NSLog(@"----------%s\nsender:%@", __FUNCTION__, sender);
+}
+- (void)myDoFireTimer2:(NSTimer *)sender {
+    NSLog(@"----------%s\nsender:%@", __FUNCTION__, sender);
+}
+
+void myCFTimerCallBack(CFRunLoopTimerRef timer, void *info) {
+    NSLog(@"---------%s\ntimer:%@\ninfo:%@", __FUNCTION__, timer, info);
+}
+
+- (void)launchThread {
+    NSPort *myPort = [NSMachPort port];
+    if (myPort) {
+        //此类处理传入的端口消息
+        [myPort setDelegate:self];
+        
+        //在当前运行循环中将端口安装为输入源
+        [[NSRunLoop currentRunLoop] addPort:myPort forMode:NSDefaultRunLoopMode];
+        
+        //分离线程,让工作线程释放端口
+        [NSThread detachNewThreadSelector:@selector(luanchThreadWithPort:) toTarget:self withObject:myPort];
+    }
+}
+- (void)storeDistancePort:(NSPort *)port {
+    
+}
+
++ (void)launchThreadWithPort:(id)inData {
+    @autoreleasepool{
+        //在此线程和主线程之间建立连接
+        NSPort *distancePort = (NSPort *)inData;
+        MainViewController *workObj = [[self alloc] init];
+        [workObj sendCheckinMessage:distancePort];
+        
+        do {
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+        } while (![workObj shouldExit]);
+    }
+}
+//工作线程签入方法
+- (void)sendCheckinMessage:(NSPort *)outPort {
+    //保留并保存远程端口以备将来使用
+    [self setRemotePort:outPort];
+    
+    //创建并配置工作线程端口
+    NSPort *myPort = [NSMachPort port];
+    [myPort setDelegate:self];
+    [[NSRunLoop currentRunLoop] addPort:myPort forMode:NSDefaultRunLoopMode];
+    
+    //创建签入消息
+    NSPortMessage *messageObj;
+//    messageObj = [[NSPortMessage alloc] initWithSendPort:outPort receivePort:myPort components:nil];
+    if (messageObj) {
+//        [messageObj setMsgid:KCheckInMessage];
+//        [messageObj sendBeforeDate[NSDate date]];
+    }
+}
+- (BOOL)shouldExit {
+    
+    return NO;
+}
+- (void)setRemotePort:(NSPort *)port {
+    
+}
+
+#pragma mark <NSPortDelegate>代理方法
+#define KCheckInMessage         100
+// 处理来自工作线程的响应
+- (void)handlePortMessage:(NSPortMessage *)portMessage {
+    id objMessage = portMessage;
+    unsigned int messege = [[objMessage valueForKey:@"msgid"] unsignedIntValue];
+    NSPort *distancePort = nil;
+    if (messege == KCheckInMessage) {
+        //获取工作线程的通信端口
+        distancePort = [objMessage performSelector:@selector(sendPort)];
+        
+        //保留并保存工作端口以供以后使用
+        [self storeDistancePort:distancePort];
+    } else {
+        //处理其他消息
+    }
 }
 
 @end
