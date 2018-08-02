@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "CommonDefine.h"
 #import <Foundation/Foundation.h>
+#import <MobileCoreServices/MobileCoreServices.h>
 
 @interface MainViewController ()<NSPortDelegate>
 
@@ -84,18 +85,48 @@
     }
     
     //创建并安排计时器。
-    [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(doFireTimer:) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(doFireTimer:) userInfo:nil repeats:YES];
     
-    NSInteger loopCount = 10;
-    do {
-        //让计时器触发10次运行循环运行。
-        [myRunLoop runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1]];
-        NSLog(@"+++++++++++++%lu", loopCount);
-    } while (loopCount--);
+//    [myRunLoop runUntilDate:[NSDate dateWithTimeIntervalSinceNow:2]];
+    CFRunLoopRunResult result = CFRunLoopRunInMode(kCFRunLoopDefaultMode, 2, YES);
+    NSLog(@"+++++++++++++%s\nNSThread:%@\nresult:%i", __FUNCTION__, [NSThread currentThread], result);
+//    NSInteger loopCount = 10;
+//    do {
+//        //让计时器触发10次运行循环运行。
+//        [myRunLoop runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1]];
+//        NSLog(@"+++++++++++++%lu", loopCount);
+//    } while (loopCount--);
 }
 
 void myRunLoopObserver(CFRunLoopObserverRef observer, CFRunLoopActivity activity, void *info) {
-    NSLog(@"-----------%s\nthread:%@\nobserver:%@\nactivity:%lu\ninfo:%@", __FUNCTION__, [NSThread currentThread], observer, activity, info);
+    NSString *str = @"";
+    switch (activity) {
+        case kCFRunLoopEntry:
+            str = @"kCFRunLoopEntry";
+            break;
+        case kCFRunLoopBeforeTimers:
+            str = @"kCFRunLoopBeforeTimers";
+            break;
+        case kCFRunLoopBeforeSources:
+            str = @"kCFRunLoopBeforeSources";
+            break;
+        case kCFRunLoopBeforeWaiting:
+            str = @"kCFRunLoopBeforeWaiting";
+            break;
+        case kCFRunLoopAfterWaiting:
+            str = @"kCFRunLoopAfterWaiting";
+            break;
+        case kCFRunLoopExit:
+            str = @"kCFRunLoopExit";
+            break;
+        case kCFRunLoopAllActivities:
+            str = @"kCFRunLoopAllActivities";
+            break;
+            
+        default:
+            break;
+    }
+    NSLog(@"-----------%s\nthread:%@\nobserver:%@\nactivity:%lu     %@\ninfo:%@", __FUNCTION__, [NSThread currentThread], observer, activity, str, info);
 }
 - (void)doFireTimer:(NSTimer *)sender {
     NSLog(@"-----------%s\ntimer:%@", __FUNCTION__, sender);
@@ -178,6 +209,7 @@ void myCFTimerCallBack(CFRunLoopTimerRef timer, void *info) {
     NSPortMessage *messageObj;
 //    messageObj = [[NSPortMessage alloc] initWithSendPort:outPort receivePort:myPort components:nil];
     if (messageObj) {
+        // 完成消息配置并立即发送
 //        [messageObj setMsgid:KCheckInMessage];
 //        [messageObj sendBeforeDate[NSDate date]];
     }
@@ -206,6 +238,79 @@ void myCFTimerCallBack(CFRunLoopTimerRef timer, void *info) {
     } else {
         //处理其他消息
     }
+}
+
+OSStatus mySpawnThread() {
+    CFStringRef myPortName;
+    CFMessagePortRef myPort;
+    CFRunLoopSourceRef rlSource;
+    CFMessagePortContext context = {0, NULL, NULL, NULL, NULL};
+    Boolean shouldFreeInfo;
+    
+    myPortName = CFStringCreateWithFormat(NULL, NULL, CFSTR("com.myapp.MainThread"));
+    myPort = CFMessagePortCreateLocal(NULL, myPortName, &mainThreadResponseHandler, &context, &shouldFreeInfo);
+    
+    if (myPort != NULL) {
+        rlSource = CFMessagePortCreateRunLoopSource(NULL, myPort, 0);
+        
+        if (rlSource) {
+            CFRunLoopAddSource(CFRunLoopGetCurrent(), rlSource, kCFRunLoopDefaultMode);
+        }
+    }
+    
+    return 0;
+//    MPTaskID        taskID;
+//    return(MPCreateTask(&ServerThreadEntryPoint,
+//                        (void*)myPortName,
+//                        kThreadStackSize,
+//                        NULL,
+//                        NULL,
+//                        NULL,
+//                        0,
+//                        &taskID));
+}
+#define kCheckinMessage 100
+//主线程端口消息处理程序
+CFDataRef mainThreadResponseHandler(CFMessagePortRef local, SInt32 msgid, CFDataRef data, void *info) {
+    if (msgid == KCheckInMessage) {
+        CFMessagePortRef messagePort;
+        CFStringRef threadPortName;
+        CFIndex bufferLength = CFDataGetLength(data);
+        
+        UInt8 *buffer = CFAllocatorAllocate(NULL, bufferLength, 0);
+        CFDataGetBytes(data, CFRangeMake(0, bufferLength), buffer);
+        threadPortName = CFStringCreateWithBytes(NULL, buffer, bufferLength, kCFStringEncodingASCII, false);
+        
+        //必须按名称获取远程消息端口
+        messagePort = CFMessagePortCreateRemote(NULL, threadPortName);
+        
+        if (messagePort) {
+            //保留并保存线程的通信端口以供将来参考
+//            AddPortToListOfActiveThreads(messagePort);
+            
+            //由于前一个函数保留了端口，因此请释放
+            CFRelease(messagePort);
+        }
+        
+        CFRelease(threadPortName);
+        CFAllocatorDeallocate(NULL, buffer);
+    } else {
+        //处理其他消息
+    }
+    
+    return NULL;
+}
+
+OSStatus serverThreadEntryPoint(void *param) {
+    CFMessagePortRef mainThreadPort;
+    CFStringRef portName = (CFStringRef)param;
+    
+    mainThreadPort = CFMessagePortCreateRemote(NULL, portName);
+    CFRelease(portName);
+    
+    CFStringRef myPortName;// = CFStringCreateWithFormat(NULL, NULL, CFSTR("com.MyApp.Thread-%d"), MPCurrentTaskID());
+    
+    return 0;
 }
 
 @end
