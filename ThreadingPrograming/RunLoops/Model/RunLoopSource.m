@@ -9,37 +9,23 @@
 #import "RunLoopSource.h"
 #import <UIKit/UIKit.h>
 
+@interface RunLoopSource ()
+
+@property (assign, nonatomic) CFRunLoopRef rl;
+
+@end
+
 @implementation RunLoopSource
 
-- (instancetype)init {
-    if (self = [super init]) {
-        CFRunLoopSourceContext context = {0, (__bridge_retained void *)self, NULL, NULL, NULL, NULL, NULL, &RunLoopSourceScheduleRoutine, &RunLoopSourceCancelRoutine, &RunLoopSourcePerformRoutine};
-        runLoopSource = CFRunLoopSourceCreate(NULL, 0, &context);
-        commands = [NSMutableArray arrayWithCapacity:1];
-    }
-    
-    return self;
-}
-
-- (void)addToCurrentRunLoop {
-    CFRunLoopRef rf = CFRunLoopGetCurrent();
-    CFRunLoopAddSource(rf, runLoopSource, kCFRunLoopDefaultMode);
-}
-- (void)fireCommandsOnRunLoop:(CFRunLoopRef)runLoop {
-    CFRunLoopSourceSignal(runLoopSource);
-    CFRunLoopWakeUp(runLoop);
-}
-- (void)addCommand:(NSInteger)command withData:(id)data {
-//    CFRunLoopSource
-}
-@end
 
 void RunLoopSourceScheduleRoutine(void *info, CFRunLoopRef rf, CFStringRef mode) {
     RunLoopSource *source = (__bridge RunLoopSource *)info;
-    id del = [UIApplication sharedApplication].delegate;
-    RunLoopContext *theContex = [[RunLoopContext alloc] initWithSource:source andLoop:rf];
+    RunLoopContext *theContext = [[RunLoopContext alloc] initWithSource:source andLoop:rf];
     
-    [del performSelectorOnMainThread:@selector(registerSource:) withObject:theContex waitUntilDone:NO];
+    if ([source.delegate respondsToSelector:@selector(registerSource:)]) {
+        NSObject *obj = source.delegate;
+        [obj performSelectorOnMainThread:@selector(registerSource:) withObject:theContext waitUntilDone:NO];
+    }
 }
 void RunLoopSourcePerformRoutine(void *info) {
     RunLoopSource *source = (__bridge RunLoopSource *)info;
@@ -47,11 +33,56 @@ void RunLoopSourcePerformRoutine(void *info) {
 }
 void RunLoopSourceCancelRoutine(void *info, CFRunLoopRef rf, CFStringRef mode) {
     RunLoopSource *source = (__bridge RunLoopSource *)info;
-    id del = [UIApplication sharedApplication].delegate;
     RunLoopContext *theContext = [[RunLoopContext alloc] initWithSource:source andLoop:rf];
     
-    [del performSelectorOnMainThread:@selector(removeResource:) withObject:theContext waitUntilDone:NO];
+    if ([source.delegate respondsToSelector:@selector(removeSource:)]) {
+        NSObject *obj = source.delegate;
+        [obj performSelectorOnMainThread:@selector(removeSource:) withObject:theContext waitUntilDone:NO];
+    }
 }
+
+
+- (instancetype)init {
+    if (self = [super init]) {
+        CFRunLoopSourceContext context = {0, (__bridge_retained void *)self, NULL, NULL, NULL, NULL, NULL, &RunLoopSourceScheduleRoutine, &RunLoopSourceCancelRoutine, &RunLoopSourcePerformRoutine};
+        runLoopSource = CFRunLoopSourceCreate(NULL, 0, &context);
+        commands = [NSMutableArray arrayWithCapacity:1];
+    }
+    return self;
+}
+
+- (void)addToCurrentRunLoop {
+    CFRunLoopRef rlRef = CFRunLoopGetCurrent();
+    [self addToRunLoop:rlRef];
+    self.rl = rlRef;
+    CFRelease(rlRef);
+}
+- (void)addToRunLoop:(CFRunLoopRef)rlRef {
+    CFRunLoopAddSource(rlRef, runLoopSource, kCFRunLoopDefaultMode);
+}
+- (void)fireCommandsOnRunLoop:(CFRunLoopRef)runLoop {
+    CFRunLoopSourceSignal(runLoopSource);
+    CFRunLoopWakeUp(runLoop);
+}
+- (void)addCommand:(NSInteger)command withData:(id)data {
+//    CFRunLoopSource
+    [commands addObject:data];
+    [self fireCommandsOnRunLoop:self.rl];
+}
+- (void)sourceFired {
+    if (commands.count) {
+        NSLog(@"--------------\nthread:%@\ndata:%@", [NSThread currentThread], [commands firstObject]);
+        [commands removeObjectAtIndex:0];
+    }
+}
+- (void)invalidate {
+    CFRunLoopSourceInvalidate(runLoopSource);
+}
+- (void)fireAllCommandsOnRunLoop:(CFRunLoopRef)runLoop {
+    CFRunLoopSourceGetOrder(runLoopSource);
+}
+
+@end
 
 @implementation RunLoopContext
 @synthesize source = source;

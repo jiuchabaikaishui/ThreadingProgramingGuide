@@ -8,12 +8,27 @@
 
 #import "MainViewController.h"
 #import "CommonDefine.h"
-#import <Foundation/Foundation.h>
-#import <MobileCoreServices/MobileCoreServices.h>
+#import "RunLoopSource.h"
 
-@interface MainViewController ()<NSPortDelegate>
+#define KCheckInMathPortMessage                 100
+#define KCheckOutMathPortMessage                101
+#define KCheckInMessagePortMessage              103
+#define KCheckOutMessagePortMessage             104
+#define KMainMessagePortName                    "com.myapp.MainThread"
+#define KWorkMessagePortName                    "com.MyApp.Thread"
+
+@interface MainViewController ()<NSPortDelegate, RunLoopSourceDelegate> {
+    CFMessagePortRef mainMessagePort;
+    CFMessagePortRef workMessagePort;
+}
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (strong, nonatomic) RunLoopSource *source;
+@property (strong, nonatomic) NSPort *mainPort;
+@property (strong, nonatomic) NSPort *workPort;
+//@property (strong, nonatomic) NSPort *mainMessagePort;
+//@property (strong, nonatomic) NSPort *workMessagePort;
 
 @end
 
@@ -22,6 +37,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self launchCostomPortThread];
+    [self launchThread];
+//    [self launchMessagePortThread];
+    [self mySpawnThread];
     K_WeakSelf
     self.title = @"RunLoop";
     self.tableView.vmCreate(^(QSPTableViewVM *vm){
@@ -43,6 +62,12 @@
             });
         }).addSectionVMCreate(CommonTableViewSectionVM.class, ^(CommonTableViewSectionVM *sectionVM){
             sectionVM.addRowVMCreate(CommonTableViewCellVM.class, ^(CommonTableViewCellVM *cellVM){
+                cellVM.selectedBlockSet(^(UITableView *tableView, NSIndexPath *indexPath){
+                    [weakSelf.source addCommand:0 withData:@"发消息啦"];
+                }).dataMCreate(CommonM.class, ^(CommonM *model){
+                    model.titleSet(@"NSTimer类方法创建并调度计时器").detailSet(@"创建计时器并在默认模式（NSDefaultRunLoopMode）中将其添加到当前线程的运行循环中。");
+                });
+            }).addRowVMCreate(CommonTableViewCellVM.class, ^(CommonTableViewCellVM *cellVM){
                 cellVM.selectedBlockSet(^(UITableView *tableView, NSIndexPath *indexPath){
                     [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(myDoFireTimer1:) userInfo:nil repeats:YES];
                 }).dataMCreate(CommonM.class, ^(CommonM *model){
@@ -67,10 +92,40 @@
             }).dataMCreate(CommonM.class, ^(CommonM *model){
                 model.titleSet(@"配置定时器源").detailSet(@"要创建计时器源，要做的就是创建一个计时器对象并在运行循环上调度。在Cocoa中，您使用NSTimer类创建新的计时器对象，在Core Foundation中使用CFRunLoopTimerRef opaque类型。");
             });
+        }).addSectionVMCreate(CommonTableViewSectionVM.class, ^(CommonTableViewSectionVM *sectionVM){
+            sectionVM.addRowVMCreate(CommonTableViewCellVM.class, ^(CommonTableViewCellVM *cellVM){
+                cellVM.selectedBlockSet(^(UITableView *tableView, NSIndexPath *indexPath){
+                    if (weakSelf.workPort) {
+                        [weakSelf.workPort sendBeforeDate:[NSDate date] msgid:KCheckOutMathPortMessage components:nil from:weakSelf.mainPort reserved:0];
+                    } else {
+                        [weakSelf launchThread];
+                    }
+                }).dataMCreate(CommonM.class, ^(CommonM *model){
+                    model.titleSet(@"配置NSMachPort对象").detailSet(@"要与NSMachPort对象建立本地连接，需创建端口对象并将其添加到主线程的运行循环中，然后在启动辅助线程时，将同一端口对象传递给辅助线程的入口点函数，辅助线程可以使用相同的端口对象将消息发送回主线程。");
+                });
+            }).addRowVMCreate(CommonTableViewCellVM.class, ^(CommonTableViewCellVM *cellVM){
+                cellVM.dataMCreate(CommonM.class, ^(CommonM *model){
+                    model.titleSet(@"配置NSMessagePort对象（iOS中不支持）").detailSet(@"要与NSMessagePort对象建立本地连接，不能简单地在线程之间传递端口对象。必须按名称获取远程消息端口。在Cocoa中实现这一点需要使用特定名称注册本地端口，然后将该名称传递给远程线程，以便它可以获取适当的端口对象进行通信。");
+                });
+            }).addRowVMCreate(CommonTableViewCellVM.class, ^(CommonTableViewCellVM *cellVM){
+                cellVM.selectedBlockSet(^(UITableView *tableView, NSIndexPath *indexPath){
+                    NSString *msg = @"我的消息";
+                    NSData *msgData = [msg dataUsingEncoding:NSUTF8StringEncoding];
+                    CFMessagePortRef workPort = CFMessagePortCreateRemote(NULL, CFSTR(KWorkMessagePortName));
+                    CFMessagePortSendRequest(workPort, KCheckOutMessagePortMessage, (__bridge_retained CFDataRef)msgData, 0, 0, NULL, NULL);
+                    CFRelease(workPort);
+                }).dataMCreate(CommonM.class, ^(CommonM *model){
+                    model.titleSet(@"Core Foundation中配置基于端口的输入源").detailSet(@"使用Core Foundation在应用程序的主线程和工作线程之间建立双向通信通道。");
+                });
+            }).dataMCreate(CommonM.class, ^(CommonM *model){
+                model.titleSet(@"配置基于端口的输入源").detailSet(@"Cocoa和Core Foundation都提供了基于端口的对象，用于线程之间或进程之间的通信。");
+            });
         });
     });
 }
 
+
+#pragma mark - 创建运行循环观察器
 - (void)mainThread {
     //应用程序使用垃圾收集，因此不需要自动释放池。
     NSRunLoop *myRunLoop = [NSRunLoop currentRunLoop];
@@ -97,7 +152,6 @@
 //        NSLog(@"+++++++++++++%lu", loopCount);
 //    } while (loopCount--);
 }
-
 void myRunLoopObserver(CFRunLoopObserverRef observer, CFRunLoopActivity activity, void *info) {
     NSString *str = @"";
     switch (activity) {
@@ -131,10 +185,12 @@ void myRunLoopObserver(CFRunLoopObserverRef observer, CFRunLoopActivity activity
 - (void)doFireTimer:(NSTimer *)sender {
     NSLog(@"-----------%s\ntimer:%@", __FUNCTION__, sender);
 }
+
+
+#pragma mark - 运行运行循环
 - (void)doFireTimer2:(NSTimer *)sender {
     NSLog(@"-----------%s\ntimer:%@", __FUNCTION__, sender);
 }
-
 - (void)skeletonThreadMain {
     //如果不使用垃圾收集，在此处设置自动释放池
     bool down = NO;
@@ -155,6 +211,9 @@ void myRunLoopObserver(CFRunLoopObserverRef observer, CFRunLoopActivity activity
         //根据需要完成变量
     } while (!down);
 }
+
+
+#pragma mark - 配置定时器源
 - (void)myDoFireTimer1:(NSTimer *)sender {
     NSLog(@"----------%s\nsender:%@", __FUNCTION__, sender);
 }
@@ -166,6 +225,31 @@ void myCFTimerCallBack(CFRunLoopTimerRef timer, void *info) {
     NSLog(@"---------%s\ntimer:%@\ninfo:%@", __FUNCTION__, timer, info);
 }
 
+
+#pragma mark - 自定义输入源
+- (void)launchCostomPortThread {
+    [NSThread detachNewThreadSelector:@selector(costomPortThread:) toTarget:self withObject:nil];
+}
+- (void)costomPortThread:(id)obj {
+    @autoreleasepool {
+        RunLoopSource *source = [[RunLoopSource alloc] init];
+        source.delegate = self;
+        [source addToCurrentRunLoop];
+        self.source = source;
+        [[NSRunLoop currentRunLoop] run];
+    };
+}
+
+#pragma mark <RunLoopSourceDelegate>代理方法
+- (void)registerSource:(RunLoopContext *)sourceContext {
+    NSLog(@"------------%s\ncontext:%@", __FUNCTION__, sourceContext);
+}
+- (void)removeSource:(RunLoopContext *)sourceContext {
+    NSLog(@"------------%s\ncontext:%@", __FUNCTION__, sourceContext);
+}
+
+
+#pragma mark - 配置NSMachPort端口
 - (void)launchThread {
     NSPort *myPort = [NSMachPort port];
     if (myPort) {
@@ -174,45 +258,46 @@ void myCFTimerCallBack(CFRunLoopTimerRef timer, void *info) {
         
         //在当前运行循环中将端口安装为输入源
         [[NSRunLoop currentRunLoop] addPort:myPort forMode:NSDefaultRunLoopMode];
+        self.mainPort = myPort;
         
         //分离线程,让工作线程释放端口
-        [NSThread detachNewThreadSelector:@selector(luanchThreadWithPort:) toTarget:self withObject:myPort];
+        [NSThread detachNewThreadSelector:@selector(launchThreadWithPort:) toTarget:self withObject:myPort];
     }
 }
-- (void)storeDistancePort:(NSPort *)port {
-    
-}
-
-+ (void)launchThreadWithPort:(id)inData {
+- (void)launchThreadWithPort:(id)inData {
     @autoreleasepool{
         //在此线程和主线程之间建立连接
         NSPort *distancePort = (NSPort *)inData;
-        MainViewController *workObj = [[self alloc] init];
-        [workObj sendCheckinMessage:distancePort];
+        [self sendCheckinMessage:distancePort];
         
         do {
             [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-        } while (![workObj shouldExit]);
+        } while (![self shouldExit]);
     }
 }
 //工作线程签入方法
 - (void)sendCheckinMessage:(NSPort *)outPort {
     //保留并保存远程端口以备将来使用
-    [self setRemotePort:outPort];
+//    [self setRemotePort:outPort];
     
     //创建并配置工作线程端口
     NSPort *myPort = [NSMachPort port];
     [myPort setDelegate:self];
     [[NSRunLoop currentRunLoop] addPort:myPort forMode:NSDefaultRunLoopMode];
+    self.workPort = myPort;
     
     //创建签入消息
-    NSPortMessage *messageObj;
+//    NSPortMessage *messageObj;
 //    messageObj = [[NSPortMessage alloc] initWithSendPort:outPort receivePort:myPort components:nil];
-    if (messageObj) {
-        // 完成消息配置并立即发送
+//    if (messageObj) {
+//        // 完成消息配置并立即发送
 //        [messageObj setMsgid:KCheckInMessage];
 //        [messageObj sendBeforeDate[NSDate date]];
-    }
+//    }
+    
+//    if (outPort) {
+//        [outPort sendBeforeDate:[NSDate date] msgid:KCheckInMathPortMessage components:nil from:myPort reserved:0];
+//    }
 }
 - (BOOL)shouldExit {
     
@@ -221,44 +306,93 @@ void myCFTimerCallBack(CFRunLoopTimerRef timer, void *info) {
 - (void)setRemotePort:(NSPort *)port {
     
 }
+- (void)storeDistancePort:(NSPort *)port {
+    
+}
 
 #pragma mark <NSPortDelegate>代理方法
-#define KCheckInMessage         100
 // 处理来自工作线程的响应
 - (void)handlePortMessage:(NSPortMessage *)portMessage {
     id objMessage = portMessage;
     unsigned int messege = [[objMessage valueForKey:@"msgid"] unsignedIntValue];
-    NSPort *distancePort = nil;
-    if (messege == KCheckInMessage) {
-        //获取工作线程的通信端口
-        distancePort = [objMessage performSelector:@selector(sendPort)];
-        
-        //保留并保存工作端口以供以后使用
-        [self storeDistancePort:distancePort];
+    NSPort *distancePort = [objMessage performSelector:@selector(sendPort)];
+    NSLog(@"------------%s\nthread:%@\nportMessage:%@\ndiatancePort:%@", __FUNCTION__, [NSThread currentThread], portMessage, distancePort);
+    if (messege == KCheckInMathPortMessage) {
+        //        //获取工作线程的通信端口
+        //        distancePort = [objMessage performSelector:@selector(sendPort)];
+        //
+        //        //保留并保存工作端口以供以后使用
+        //        [self storeDistancePort:distancePort];
+        //
+        //        NSLog(@"------------%s\nthread:%@\nportMessage:%@\ndiatancePort:%@", __FUNCTION__, [NSThread currentThread], portMessage, distancePort);
     } else {
         //处理其他消息
     }
 }
 
-OSStatus mySpawnThread() {
+
+#pragma mark - 配置NSMessagePort端口
+//- (void)launchMessagePortThread {
+//    NSMessagePort *port = (NSMessagePort *)[NSMessagePort port];
+//    [port setDelegate:self];
+//    CFMessagePortSetName((__bridge_retained CFMessagePortRef)port, CFSTR(KMainMessagePortName));
+//    if (port) {
+//        [[NSRunLoop currentRunLoop] addPort:port forMode:NSDefaultRunLoopMode];
+//        self.mainMessagePort = port;
+//
+//        [NSThread detachNewThreadSelector:@selector(launchThreadWithMessagePort:) toTarget:self withObject:port];
+//    }
+//}
+//- (void)launchThreadWithMessagePort:(NSMessagePort *)messagePort {
+//    @autoreleasepool{
+//        NSMessagePort *messagePort = (NSMessagePort *)[NSMessagePort port];
+//        NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+//        [runLoop addPort:messagePort forMode:NSDefaultRunLoopMode];
+//        self.workMessagePort = messagePort;
+//
+//        do {
+//            [runLoop runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+//        } while (![self messagePortShouldExit]);
+//    };
+//}
+//- (BOOL)messagePortShouldExit {
+//
+//    return NO;
+//}
+
+
+#pragma mark - Core Foundation中配置基于端口的输入源
+- (OSStatus)mySpawnThread {
+    // 创建用于接收响应的本地端口
     CFStringRef myPortName;
     CFMessagePortRef myPort;
     CFRunLoopSourceRef rlSource;
     CFMessagePortContext context = {0, NULL, NULL, NULL, NULL};
     Boolean shouldFreeInfo;
     
-    myPortName = CFStringCreateWithFormat(NULL, NULL, CFSTR("com.myapp.MainThread"));
+    // 创建一个包含端口名称的字符串
+    myPortName = CFStringCreateWithFormat(NULL, NULL, CFSTR(KMainMessagePortName));
+    // 创建端口
     myPort = CFMessagePortCreateLocal(NULL, myPortName, &mainThreadResponseHandler, &context, &shouldFreeInfo);
     
     if (myPort != NULL) {
+        // 端口已成功创建。
+        // 现在为它创建一个运行循环源
         rlSource = CFMessagePortCreateRunLoopSource(NULL, myPort, 0);
         
         if (rlSource) {
+            // 将源添加到当前端口
             CFRunLoopAddSource(CFRunLoopGetCurrent(), rlSource, kCFRunLoopDefaultMode);
+            
+            // 一但安装，可以释放这些
+            CFRelease(myPort);
+            CFRelease(rlSource);
         }
     }
     
-    return 0;
+    // 创建线程
+    [NSThread detachNewThreadSelector:@selector(spawnMessagePortThread:) toTarget:self withObject:(__bridge_transfer id)myPortName];
+    
 //    MPTaskID        taskID;
 //    return(MPCreateTask(&ServerThreadEntryPoint,
 //                        (void*)myPortName,
@@ -268,18 +402,19 @@ OSStatus mySpawnThread() {
 //                        NULL,
 //                        0,
 //                        &taskID));
+    
+    return 0;
 }
-#define kCheckinMessage 100
 //主线程端口消息处理程序
 CFDataRef mainThreadResponseHandler(CFMessagePortRef local, SInt32 msgid, CFDataRef data, void *info) {
-    if (msgid == KCheckInMessage) {
+    if (msgid == KCheckInMessagePortMessage) {
         CFMessagePortRef messagePort;
         CFStringRef threadPortName;
         CFIndex bufferLength = CFDataGetLength(data);
         
         UInt8 *buffer = CFAllocatorAllocate(NULL, bufferLength, 0);
         CFDataGetBytes(data, CFRangeMake(0, bufferLength), buffer);
-        threadPortName = CFStringCreateWithBytes(NULL, buffer, bufferLength, kCFStringEncodingASCII, false);
+        threadPortName = CFStringCreateWithBytes(NULL, buffer, bufferLength, kCFStringEncodingUTF8, false);
         
         //必须按名称获取远程消息端口
         messagePort = CFMessagePortCreateRemote(NULL, threadPortName);
@@ -300,17 +435,84 @@ CFDataRef mainThreadResponseHandler(CFMessagePortRef local, SInt32 msgid, CFData
     
     return NULL;
 }
-
-OSStatus serverThreadEntryPoint(void *param) {
-    CFMessagePortRef mainThreadPort;
-    CFStringRef portName = (CFStringRef)param;
+- (OSStatus)spawnMessagePortThread:(id)name {
+    // 创建来自主线程的远程端口
+    CFStringRef portName = (__bridge_retained CFStringRef)name;
+    CFMessagePortRef mainThreadPort = CFMessagePortCreateRemote(NULL, portName);
     
-    mainThreadPort = CFMessagePortCreateRemote(NULL, portName);
+    // 保存端口到本线程的context中以便以后使用
+    CFMessagePortContext context = {0, mainThreadPort, NULL, NULL, NULL};
+    
+    // 为工作线程创建端口
+    Boolean shouldFreeInfo;
+    CFStringRef myPortName = CFStringCreateWithFormat(NULL, NULL, CFSTR(KWorkMessagePortName));
+    CFMessagePortRef myPort = CFMessagePortCreateLocal(NULL, myPortName, &processClientRequest, &context, &shouldFreeInfo);
+    
+    if (shouldFreeInfo) {
+        // 不能创建本地端口，杀掉线程
+        [NSThread exit];
+    }
+    
+    CFRunLoopSourceRef rlSource = CFMessagePortCreateRunLoopSource(NULL, myPort, 0);
+    if (!rlSource) {
+        // 不能创建本地端口，杀掉线程
+        [NSThread exit];
+    }
+    
+    // 为当前线程添加输入源
+    CFRunLoopAddSource(CFRunLoopGetCurrent(), rlSource, kCFRunLoopDefaultMode);
+    
+    // 一但安装，可以释放这些
+    CFRelease(myPort);
+    CFRelease(rlSource);
+    
+    // 打包端口名称并发送签入消息
+//    CFDataRef returnData = nil;
+    CFIndex stringLength = CFStringGetLength(myPortName);
+    UInt8 *buffer = CFAllocatorAllocate(NULL, stringLength, 0);
+    CFStringGetBytes(myPortName, CFRangeMake(0, stringLength), kCFStringEncodingASCII, 0, false, buffer, stringLength, NULL);
+    CFDataRef outData = CFDataCreate(NULL, buffer, stringLength);
+    
+    CFMessagePortSendRequest(mainThreadPort, KCheckInMessagePortMessage, outData, 0.1, 0, NULL, NULL);
+    
+    // 清理线程数据
+    CFRelease(outData);
     CFRelease(portName);
+    CFRelease(myPortName);
+    CFRelease(mainThreadPort);
+    CFAllocatorDeallocate(NULL, buffer);
     
-    CFStringRef myPortName;// = CFStringCreateWithFormat(NULL, NULL, CFSTR("com.MyApp.Thread-%d"), MPCurrentTaskID());
+    // 运行运行循环
+    CFRunLoopRun();
     
     return 0;
+}
+CFDataRef processClientRequest(CFMessagePortRef local, SInt32 msgid, CFDataRef data, void *info) {
+    // 把data转为字符串
+    NSString *msg = [[NSString alloc] initWithData:(__bridge NSData *)data encoding:NSUTF8StringEncoding];
+    NSLog(@"----------%s\nthread:%@\ndata:%@", __FUNCTION__, [NSThread currentThread], msg);
+    
+    if (msgid == KCheckOutMessagePortMessage) {
+        // 端口名称
+        CFStringRef threadPortName = CFSTR(KMainMessagePortName);
+        
+        //必须按名称获取远程消息端口
+        CFMessagePortRef messagePort = CFMessagePortCreateRemote(NULL, threadPortName);
+        
+        if (messagePort) {
+            //保留并保存线程的通信端口以供将来参考
+            //            AddPortToListOfActiveThreads(messagePort);
+            
+            //由于前一个函数保留了端口，因此请释放
+            CFRelease(messagePort);
+        }
+        
+        CFRelease(threadPortName);
+    } else {
+        //处理其他消息
+    }
+    
+    return NULL;
 }
 
 @end

@@ -208,7 +208,6 @@
 		6E1FD64E20FCC513002D9D2F /* RunLoops */ = {
 			isa = PBXGroup;
 			children = (
-				6E891E072112AE8B00B2443D /* Frameworks */,
 				6E891DB8210FF16A00B2443D /* Controller */,
 				6E891DB7210FF16A00B2443D /* ViewModel */,
 				6E891DB6210FF16A00B2443D /* View */,
@@ -397,13 +396,6 @@
 				6E891DD421100DB800B2443D /* CommonTableViewHeaderView.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		6E891E072112AE8B00B2443D /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

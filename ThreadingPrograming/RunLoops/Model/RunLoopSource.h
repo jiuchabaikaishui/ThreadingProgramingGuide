@@ -8,11 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
+@class RunLoopContext;
+@protocol RunLoopSourceDelegate<NSObject>
+
+- (void)registerSource:(RunLoopContext *)sourceContext;
+- (void)removeSource:(RunLoopContext *)sourceContext;
+
+@end
+
 @interface RunLoopSource : NSObject
 {
     CFRunLoopSourceRef runLoopSource;
     NSMutableArray *commands;
 }
+
+@property (weak, nonatomic) id<RunLoopSourceDelegate> delegate;
 
 - (instancetype)init;
 - (void)addToCurrentRunLoop;
@@ -25,9 +35,9 @@
 
 @end
 
-void RunLoopSourceScheduleRoutine(void *info, CFRunLoopRef rf, CFStringRef mode);
-void RunLoopSourcePerformRoutine(void *info);
-void RunLoopSourceCancelRoutine(void *info, CFRunLoopRef rf, CFStringRef mode);
+//void RunLoopSourceScheduleRoutine(void *info, CFRunLoopRef rf, CFStringRef mode);
+//void RunLoopSourcePerformRoutine(void *info);
+//void RunLoopSourceCancelRoutine(void *info, CFRunLoopRef rf, CFStringRef mode);
 
 
 @interface RunLoopContext: NSObject
