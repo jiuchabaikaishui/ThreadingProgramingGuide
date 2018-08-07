@@ -65,9 +65,13 @@
                 cellVM.selectedBlockSet(^(UITableView *tableView, NSIndexPath *indexPath){
                     [weakSelf.source addCommand:0 withData:@"发消息啦"];
                 }).dataMCreate(CommonM.class, ^(CommonM *model){
-                    model.titleSet(@"NSTimer类方法创建并调度计时器").detailSet(@"创建计时器并在默认模式（NSDefaultRunLoopMode）中将其添加到当前线程的运行循环中。");
+                    model.titleSet(@"配置自定义输入源").detailSet(@"应用程序的主线程维护对输入源的引用，该输入源的自定义命令缓冲区以及安装输入源的运行循环。当主线程有一个要传递给工作线程的任务时，它会向命令缓冲区发布一个命令以及工作线程启动任务所需的任何信息。");
                 });
-            }).addRowVMCreate(CommonTableViewCellVM.class, ^(CommonTableViewCellVM *cellVM){
+            }).dataMCreate(CommonM.class, ^(CommonM *model){
+                model.titleSet(@"自定义输入源").detailSet(@"创建了一个自定义输入源来处理自定义信息，实际配置的设计非常灵活。调度程序，处理程序和取消例程是您自定义输入源几乎总是需要的关键例程。");
+            });
+        }).addSectionVMCreate(CommonTableViewSectionVM.class, ^(CommonTableViewSectionVM *sectionVM){
+            sectionVM.addRowVMCreate(CommonTableViewCellVM.class, ^(CommonTableViewCellVM *cellVM){
                 cellVM.selectedBlockSet(^(UITableView *tableView, NSIndexPath *indexPath){
                     [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(myDoFireTimer1:) userInfo:nil repeats:YES];
                 }).dataMCreate(CommonM.class, ^(CommonM *model){
