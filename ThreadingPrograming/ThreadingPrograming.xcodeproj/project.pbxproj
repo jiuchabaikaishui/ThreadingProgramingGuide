@@ -55,6 +55,8 @@
 		6E891DE221100DB800B2443D /* CommonTableViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E891DD421100DB800B2443D /* CommonTableViewHeaderView.m */; };
 		6E891DE521106CE400B2443D /* RunLoopSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E891DE421106CE400B2443D /* RunLoopSource.m */; };
 		6E891DE621106CE400B2443D /* RunLoopSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E891DE421106CE400B2443D /* RunLoopSource.m */; };
+		6E891E0D21194D0900B2443D /* 线程编程指南翻译第三篇（运行循环）.md in Resources */ = {isa = PBXBuildFile; fileRef = 6E891E0C21194D0900B2443D /* 线程编程指南翻译第三篇（运行循环）.md */; };
+		6E891E0E21194D0900B2443D /* 线程编程指南翻译第三篇（运行循环）.md in Resources */ = {isa = PBXBuildFile; fileRef = 6E891E0C21194D0900B2443D /* 线程编程指南翻译第三篇（运行循环）.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,6 +117,7 @@
 		6E891DD421100DB800B2443D /* CommonTableViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTableViewHeaderView.m; sourceTree = "<group>"; };
 		6E891DE321106CE400B2443D /* RunLoopSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RunLoopSource.h; sourceTree = "<group>"; };
 		6E891DE421106CE400B2443D /* RunLoopSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RunLoopSource.m; sourceTree = "<group>"; };
+		6E891E0C21194D0900B2443D /* 线程编程指南翻译第三篇（运行循环）.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "线程编程指南翻译第三篇（运行循环）.md"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -373,6 +376,7 @@
 			children = (
 				6E891DCA21100DB800B2443D /* 线程编程指南翻译第一篇（关于线程编程）.md */,
 				6E891DCB21100DB800B2443D /* 线程编程指南翻译第二篇（线程管理）.md */,
+				6E891E0C21194D0900B2443D /* 线程编程指南翻译第三篇（运行循环）.md */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -478,6 +482,7 @@
 			files = (
 				6E891DDB21100DB800B2443D /* 线程编程指南翻译第二篇（线程管理）.md in Resources */,
 				6E1FD60B20FC6B5D002D9D2F /* LaunchScreen.storyboard in Resources */,
+				6E891E0D21194D0900B2443D /* 线程编程指南翻译第三篇（运行循环）.md in Resources */,
 				6E1FD60820FC6B5D002D9D2F /* Assets.xcassets in Resources */,
 				6E891DD921100DB800B2443D /* 线程编程指南翻译第一篇（关于线程编程）.md in Resources */,
 				6E1FD60620FC6B5D002D9D2F /* Main.storyboard in Resources */,
@@ -490,6 +495,7 @@
 			files = (
 				6E891DDC21100DB800B2443D /* 线程编程指南翻译第二篇（线程管理）.md in Resources */,
 				6E1FD65C20FCC514002D9D2F /* LaunchScreen.storyboard in Resources */,
+				6E891E0E21194D0900B2443D /* 线程编程指南翻译第三篇（运行循环）.md in Resources */,
 				6E1FD65920FCC514002D9D2F /* Assets.xcassets in Resources */,
 				6E891DDA21100DB800B2443D /* 线程编程指南翻译第一篇（关于线程编程）.md in Resources */,
 				6E1FD65720FCC513002D9D2F /* Main.storyboard in Resources */,
